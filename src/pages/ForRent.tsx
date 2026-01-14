@@ -1,4 +1,4 @@
-import { Search } from 'lucide-react';
+import { SlidersHorizontal } from 'lucide-react';
 import PropertyCard from '../components/PropertyCard';
 
 export default function ForRent() {
@@ -109,65 +109,71 @@ export default function ForRent() {
   ];
 
   return (
-    <div>
+    <div className="bg-gray-50 min-h-screen">
+      {/* Page Header - Fixed Background */}
       <section
-        className="relative h-96 flex items-center justify-center bg-cover bg-center"
+        className="relative h-[300px] md:h-[400px] flex items-center justify-center bg-cover bg-center bg-fixed"
         style={{
-          backgroundImage: 'url(https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=1920)',
+          backgroundImage: 'url(https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1920)',
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">Our Properties For Rent</h1>
-          <p className="text-xl uppercase tracking-wide">Discover exclusive place to live</p>
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">Our Properties For Rent</h1>
+          <p className="text-lg md:text-xl uppercase tracking-[0.25em] font-light opacity-90">
+            Discover exclusive places to live
+          </p>
         </div>
       </section>
 
-      <section className="py-8 bg-gray-50">
+      {/* Results & Sorting */}
+      <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="bg-white rounded-lg p-4 shadow-md">
-            <div className="flex gap-4">
-              <input
-                type="text"
-                placeholder="Search properties..."
-                className="flex-1 px-4 py-3 border border-gray-300 rounded"
-              />
-              <button className="px-8 py-3 bg-lime-500 text-white rounded hover:bg-lime-600 transition-colors flex items-center gap-2">
-                <Search className="w-5 h-5" />
-                Search
-              </button>
+          <div className="flex flex-col sm:flex-row justify-between items-center mb-10 gap-6">
+            <div className="flex items-center gap-3 text-gray-800">
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
+                <SlidersHorizontal className="w-5 h-5 text-lime-600" />
+              </div>
+              <p className="font-bold text-lg">
+                <span className="text-lime-600">{properties.length}</span> Properties Available
+              </p>
+            </div>
+            
+            <div className="flex items-center gap-3 w-full sm:w-auto">
+              <label className="text-sm font-bold text-gray-400 uppercase tracking-wider hidden md:block">
+                Sort by:
+              </label>
+              <select className="w-full sm:w-56 px-4 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-lime-500 shadow-sm transition-all cursor-pointer">
+                <option value="default">Default Order</option>
+                <option value="low-to-high">Price: Low to High</option>
+                <option value="high-to-low">Price: High to Low</option>
+                <option value="newest">Newest First</option>
+              </select>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className="py-12 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center mb-8">
-            <p className="text-gray-600">{properties.length} Properties</p>
-            <select className="px-4 py-2 border border-gray-300 rounded">
-              <option>Default Order</option>
-              <option>Price: Low to High</option>
-              <option>Price: High to Low</option>
-              <option>Newest First</option>
-            </select>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Property Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {properties.map((property) => (
-              <PropertyCard key={property.id} {...property} />
+              <div key={property.id} className="transition-all duration-300 hover:-translate-y-2">
+                <PropertyCard {...property} />
+              </div>
             ))}
           </div>
 
-          <div className="flex justify-center mt-12">
-            <div className="flex gap-2">
-              <button className="px-4 py-2 bg-lime-500 text-white rounded hover:bg-lime-600 transition-colors">
+          {/* Pagination */}
+          <div className="flex justify-center mt-20">
+            <nav className="flex items-center gap-3 bg-white p-2.5 rounded-2xl shadow-md border border-gray-100">
+              <button className="w-12 h-12 flex items-center justify-center bg-lime-500 text-white rounded-xl font-bold shadow-lg shadow-lime-500/30 transition-transform active:scale-95">
                 1
               </button>
-              <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded hover:bg-gray-50 transition-colors">
+              <button className="w-12 h-12 flex items-center justify-center bg-white text-gray-500 hover:text-lime-600 hover:bg-lime-50 rounded-xl font-bold transition-all active:scale-95">
                 2
               </button>
-            </div>
+              <button className="w-12 h-12 flex items-center justify-center bg-white text-gray-500 hover:text-lime-600 hover:bg-lime-50 rounded-xl font-bold transition-all active:scale-95">
+                3
+              </button>
+            </nav>
           </div>
         </div>
       </section>

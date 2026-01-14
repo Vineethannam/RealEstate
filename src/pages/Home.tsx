@@ -1,11 +1,8 @@
-import { Search, Users, TrendingUp, BarChart3, Handshake, DollarSign, Scale } from 'lucide-react';
+import { Users, TrendingUp, BarChart3, Handshake, DollarSign, Scale } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import PropertyCard from '../components/PropertyCard';
 
 export default function Home() {
-  const [searchType, setSearchType] = useState('All');
-
   const featuredProperties = [
     {
       id: 1,
@@ -71,78 +68,50 @@ export default function Home() {
   ];
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
+      {/* Hero Section with Fixed Background */}
       <section
-        className="relative h-screen flex items-center justify-center bg-cover bg-center"
+        className="relative min-h-[80vh] flex items-center justify-center bg-cover bg-center bg-fixed"
         style={{
           backgroundImage: 'url(https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1920)',
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-        <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">Discover Your Place To Live</h1>
-          <p className="text-xl mb-8">GET STARTED IN FEW CLICKS</p>
-
-          <div className="bg-white rounded-lg p-6 max-w-4xl mx-auto">
-            <div className="flex gap-2 mb-4">
-              <button
-                onClick={() => setSearchType('All')}
-                className={`px-6 py-2 rounded transition-colors ${
-                  searchType === 'All' ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-700'
-                }`}
-              >
-                All
-              </button>
-              <button
-                onClick={() => setSearchType('For Rent')}
-                className={`px-6 py-2 rounded transition-colors ${
-                  searchType === 'For Rent' ? 'bg-lime-500 text-white' : 'bg-gray-200 text-gray-700'
-                }`}
-              >
-                For Rent
-              </button>
-              <button
-                onClick={() => setSearchType('For Sale')}
-                className={`px-6 py-2 rounded transition-colors ${
-                  searchType === 'For Sale' ? 'bg-lime-500 text-white' : 'bg-gray-200 text-gray-700'
-                }`}
-              >
-                For Sale
-              </button>
-            </div>
-
-            <div className="flex gap-4">
-              <select className="flex-1 px-4 py-3 border border-gray-300 rounded text-gray-700">
-                <option>All Cities</option>
-                <option>Miami</option>
-                <option>New York</option>
-                <option>Los Angeles</option>
-                <option>Chicago</option>
-              </select>
-              <input
-                type="text"
-                placeholder="Enter keyword..."
-                className="flex-1 px-4 py-3 border border-gray-300 rounded text-gray-700"
-              />
-              <button className="px-8 py-3 bg-lime-500 text-white rounded hover:bg-lime-600 transition-colors flex items-center gap-2">
-                <Search className="w-5 h-5" />
-                Search
-              </button>
-            </div>
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="relative z-10 text-center text-white px-4 w-full max-w-4xl">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            Discover Your Place To Live
+          </h1>
+          <p className="text-lg md:text-2xl mb-10 tracking-widest font-light opacity-90 uppercase">
+            Exclusive Luxury Properties
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/for-sale"
+              className="px-10 py-4 bg-lime-500 hover:bg-lime-600 text-white font-bold rounded-full transition-all shadow-lg active:scale-95"
+            >
+              Browse Properties
+            </Link>
+            <Link
+              to="/about"
+              className="px-10 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-full backdrop-blur-md border border-white/30 transition-all active:scale-95"
+            >
+              Learn More
+            </Link>
           </div>
         </div>
       </section>
 
+      {/* Featured Properties Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Our Featured Exclusives</h2>
-            <p className="text-gray-600 uppercase tracking-wide text-sm">
-              Choose from different listing templates and lay them out as lists or grids, full-width or boxed
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Featured Exclusives</h2>
+            <p className="text-gray-500 uppercase tracking-widest text-xs md:text-sm max-w-2xl mx-auto">
+              Choose from different listing templates and lay them out as lists or grids
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {featuredProperties.map((property) => (
               <PropertyCard key={property.id} {...property} />
             ))}
@@ -151,57 +120,58 @@ export default function Home() {
           <div className="text-center">
             <Link
               to="/for-sale"
-              className="inline-block px-8 py-3 border-2 border-lime-500 text-lime-500 rounded hover:bg-lime-500 hover:text-white transition-colors"
+              className="inline-block px-10 py-3 border-2 border-lime-500 text-lime-600 font-bold rounded-full hover:bg-lime-500 hover:text-white transition-all duration-300"
             >
-              Load More
+              View All Properties
             </Link>
           </div>
         </div>
       </section>
 
+      {/* Finest Selection Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div
-              className="h-96 bg-cover bg-center rounded-lg"
+              className="h-72 md:h-[500px] bg-cover bg-center rounded-3xl shadow-2xl transition-transform hover:scale-[1.02] duration-500"
               style={{
                 backgroundImage: 'url(https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=800)',
               }}
             ></div>
-            <div>
-              <h2 className="text-4xl font-bold text-gray-800 mb-6">
-                Discover Our Finest Selection
+            <div className="text-center lg:text-left">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                Discover Our <br className="hidden md:block" /> Finest Selection
               </h2>
-              <p className="text-gray-600 mb-6 uppercase tracking-wide text-sm">
-                Choose from different listing templates and lay them out as lists or grids, full-width or boxed
+              <p className="text-gray-500 mb-8 uppercase tracking-widest text-sm leading-relaxed">
+                Premium real estate services tailored to your lifestyle. Find the perfect home in the most prestigious neighborhoods.
               </p>
               <Link
                 to="/for-sale"
-                className="inline-block px-8 py-3 border-2 border-lime-500 text-lime-500 rounded hover:bg-lime-500 hover:text-white transition-colors"
+                className="inline-block px-12 py-4 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 transition-transform active:scale-95 shadow-xl"
               >
-                Discover
+                Discover Now
               </Link>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Services Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Our Services</h2>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Our Professional Services</h2>
+            <div className="h-1.5 w-24 bg-lime-500 mx-auto mt-6 rounded-full"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {services.map((service, index) => (
-              <div key={index} className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <service.icon className="w-12 h-12 text-gray-800" />
+              <div key={index} className="group flex flex-col items-center text-center p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-lime-100">
+                <div className="mb-6 p-4 bg-gray-50 rounded-2xl group-hover:bg-lime-500 transition-colors duration-300">
+                  <service.icon className="w-10 h-10 text-gray-800 group-hover:text-white transition-colors" />
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
-                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                <p className="text-gray-500 leading-relaxed text-sm">{service.description}</p>
               </div>
             ))}
           </div>

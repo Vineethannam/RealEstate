@@ -1,112 +1,116 @@
 import { Link } from 'react-router-dom';
-import { Home, Facebook, Twitter, Instagram, Linkedin, Youtube, MapPin, Phone, Globe } from 'lucide-react';
+import { Home, Facebook, Twitter, Instagram, Linkedin, Youtube, MapPin, Phone, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-lime-500 rounded-full flex items-center justify-center">
-                <Home className="w-5 h-5 text-white" />
+    <footer className="bg-[#0a0a0a] text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          
+          {/* Brand & Bio */}
+          <div className="space-y-6">
+            <Link to="/" className="flex items-center gap-2 group">
+              <div className="w-10 h-10 bg-lime-500 rounded-lg flex items-center justify-center transition-transform group-hover:rotate-12">
+                <Home className="w-6 h-6 text-white" />
               </div>
-              <span className="text-2xl font-bold">houzez</span>
-            </div>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis et sem sed sollicitudin.
-              Donec non odio neque. Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec.
+              <span className="text-2xl font-black tracking-tighter">houzez</span>
+            </Link>
+            <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+              Houzez is a premium WordPress theme for real estate agents and companies where modern aesthetics meet high-end functionality.
             </p>
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center gap-3 text-gray-400 hover:text-lime-500 transition-colors cursor-pointer">
+                <MapPin className="w-4 h-4 text-lime-500" />
+                <span className="text-xs">1515 Broadway, New York, NY 10036</span>
+              </div>
+              <div className="flex items-center gap-3 text-gray-400 hover:text-lime-500 transition-colors cursor-pointer">
+                <Phone className="w-4 h-4 text-lime-500" />
+                <span className="text-xs">+1 (800) 555-0123</span>
+              </div>
+            </div>
           </div>
 
+          {/* Discover Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Discover</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/" className="text-gray-400 hover:text-lime-500 transition-colors flex items-center gap-2">
-                  <span>Miami</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="text-gray-400 hover:text-lime-500 transition-colors flex items-center gap-2">
-                  <span>Los Angeles</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="text-gray-400 hover:text-lime-500 transition-colors flex items-center gap-2">
-                  <span>Chicago</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/" className="text-gray-400 hover:text-lime-500 transition-colors flex items-center gap-2">
-                  <span>New York</span>
-                </Link>
-              </li>
+            <h3 className="text-sm font-bold uppercase tracking-[0.2em] mb-6 text-lime-500">Discover</h3>
+            <ul className="space-y-4">
+              {['Miami', 'Los Angeles', 'Chicago', 'New York'].map((city) => (
+                <li key={city}>
+                  <Link to="/" className="text-gray-400 hover:text-white hover:translate-x-1 transition-all inline-block text-sm">
+                    {city}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
+          {/* Lifestyle Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Lifestyle</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/for-sale" className="text-gray-400 hover:text-lime-500 transition-colors flex items-center gap-2">
-                  <span>Apartment</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/for-sale" className="text-gray-400 hover:text-lime-500 transition-colors flex items-center gap-2">
-                  <span>Single Family Home</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/for-sale" className="text-gray-400 hover:text-lime-500 transition-colors flex items-center gap-2">
-                  <span>Villa</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/for-sale" className="text-gray-400 hover:text-lime-500 transition-colors flex items-center gap-2">
-                  <span>Loft</span>
-                </Link>
-              </li>
+            <h3 className="text-sm font-bold uppercase tracking-[0.2em] mb-6 text-lime-500">Lifestyle</h3>
+            <ul className="space-y-4">
+              {['Apartment', 'Single Family Home', 'Villa', 'Loft'].map((type) => (
+                <li key={type}>
+                  <Link to="/for-sale" className="text-gray-400 hover:text-white hover:translate-x-1 transition-all inline-block text-sm">
+                    {type}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
+          {/* Newsletter Section */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
-            <p className="text-gray-400 text-sm mb-4">Enter your email</p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2 bg-white text-black rounded"
-              />
-              <button className="px-6 py-2 bg-lime-500 text-white rounded hover:bg-lime-600 transition-colors">
-                Submit
+            <h3 className="text-sm font-bold uppercase tracking-[0.2em] mb-6 text-lime-500">Newsletter</h3>
+            <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+              Stay updated with our latest luxury property listings.
+            </p>
+            <div className="flex flex-col space-y-3">
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <input
+                  type="email"
+                  placeholder="Your Email Address"
+                  className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent transition-all"
+                />
+              </div>
+              <button className="w-full py-3 bg-lime-500 text-black font-bold text-sm rounded-lg hover:bg-lime-400 transition-colors shadow-lg shadow-lime-500/10">
+                Subscribe Now
               </button>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © Houzez - All rights reserved
-          </p>
-          <div className="flex gap-4">
-            <a href="#" className="text-gray-400 hover:text-lime-500 transition-colors">
-              <Facebook className="w-5 h-5" />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-lime-500 transition-colors">
-              <Twitter className="w-5 h-5" />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-lime-500 transition-colors">
-              <Instagram className="w-5 h-5" />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-lime-500 transition-colors">
-              <Linkedin className="w-5 h-5" />
-            </a>
-            <a href="#" className="text-gray-400 hover:text-lime-500 transition-colors">
-              <Youtube className="w-5 h-5" />
-            </a>
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10 pt-10 pb-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="text-gray-500 text-xs text-center md:text-left">
+              <p>© 2026 Houzez Real Estate. Built with passion for high-end living.</p>
+              <div className="mt-2 flex gap-4 justify-center md:justify-start">
+                <Link to="/" className="hover:text-white transition-colors">Privacy Policy</Link>
+                <Link to="/" className="hover:text-white transition-colors">Terms of Service</Link>
+              </div>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex gap-3">
+              {[
+                { Icon: Facebook, color: 'hover:bg-blue-600' },
+                { Icon: Twitter, color: 'hover:bg-sky-500' },
+                { Icon: Instagram, color: 'hover:bg-pink-600' },
+                { Icon: Linkedin, color: 'hover:bg-blue-700' },
+                { Icon: Youtube, color: 'hover:bg-red-600' }
+              ].map(({ Icon, color }, idx) => (
+                <a
+                  key={idx}
+                  href="#"
+                  className={`w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-gray-400 transition-all duration-300 ${color} hover:text-white hover:scale-110 hover:border-transparent`}
+                >
+                  <Icon className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
